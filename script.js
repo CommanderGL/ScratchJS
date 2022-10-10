@@ -24,7 +24,7 @@ class ScratchJS {
 
 		getInfo() {			
 				return {
-					"id": "JS",
+					"id": "ScratchJS",
 					"name": "JavaScript",
 					"color1": "#11ae7f",
 					"color2": "#11ae7f",
@@ -33,6 +33,17 @@ class ScratchJS {
 						{
 							"opcode": "runEval",
 							"blockType": "reporter",
+							"text": "Eval [code]",
+							"arguments": {
+								"code": {
+									"type": "string",
+									"defaultValue": "alert('Hello, World!')"
+								}
+							}
+						},
+						{
+							"opcode": "runEval",
+							"blockType": "command",
 							"text": "Eval [code]",
 							"arguments": {
 								"code": {
@@ -172,7 +183,7 @@ class ScratchJS {
 				log: (txt) => {
 					this.tempElem = document.createElement("div")
 					this.tempElem.classList.add("ScratchJS-console-segment")
-					this.tempElem.textContent = txt
+					this.tempElem.textContent = JSON.stringify(txt)
 					this.consoleElem.appendChild(this.tempElem)
 				},
 				clear: () => {
