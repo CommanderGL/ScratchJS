@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "watch": "nodemon -w src -x \"tsc; webpack\"",
-    "build": "tsc; webpack"
+    "watch:typescript": "tsc --watch",
+    "watch:webpack": "webpack --watch",
+    "build:all": "tsc; webpack",
+    "build:typescript": "tsc",
+    "build:webpack": "webpack"
   },
   "keywords": [],
   "author": "CrossScar",
