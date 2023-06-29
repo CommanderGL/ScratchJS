@@ -1,4 +1,4 @@
-import { insertConsoleElem, insertMenubarElem } from './console';
+import SJSconsole, { insertConsoleElem, insertMenubarElem } from './console';
 import { ScratchExtensionInfo, ScratchExtension, loadExtension } from './extensionUtils';
 
 class ScratchJS implements ScratchExtension {
@@ -59,6 +59,22 @@ class ScratchJS implements ScratchExtension {
                             defaultValue: "Hello, World!"
                         }
                     }
+                },
+                {
+                    opcode: "log",
+                    blockType: "command",
+                    text: "console log [text]",
+                    arguments: {
+                        text: {
+                            type: "string",
+                            defaultValue: "Hello, World!"
+                        }
+                    }
+                },
+                {
+                    opcode: "clear",
+                    blockType: "command",
+                    text: "clear console",
                 }
             ]
         }
@@ -77,6 +93,14 @@ class ScratchJS implements ScratchExtension {
 
     alert({ text }: { text: string }) {
         alert(text);
+    }
+
+    log({ text }: { text: string }) {
+        SJSconsole.log(text);
+    }
+
+    clear() {
+        SJSconsole.clear();
     }
 }
 
