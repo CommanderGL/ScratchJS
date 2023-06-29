@@ -7,7 +7,10 @@ const consoleElem = <HTMLDivElement>html`
 <div class="console" hidden>
     <header class="console-header">
         <div class="console-title">Console</div>
-        <i class="console-close fa-solid fa-xmark" aria-label="Close" tabindex=0></i>
+        <div class="console-right-block">
+            <div class="console-clear">Clear</div>
+            <i class="console-close fa-solid fa-xmark" aria-label="Close" tabindex=0></i>
+        </div>
     </header>
     <ul class="console-content"></ul>
 </div>
@@ -26,6 +29,28 @@ const menubarElem = html`
 </div>
 `;
 
+const SJSconsole = {
+    log(text: string) {
+        const elem = document.createElement('li');
+        elem.textContent = text;
+        if (text == '') {
+            elem.style.color = "#777";
+            elem.style.fontStyle = "italic";
+            elem.textContent = "(empty string)";
+        }
+        consoleContent.appendChild(elem);
+    },
+
+    clear() {
+        consoleContent.innerHTML = '';
+        const elem = document.createElement('li');
+        elem.textContent = "(console cleared)";
+        elem.style.color = "#777";
+        elem.style.fontStyle = "italic";
+        consoleContent.appendChild(elem);
+    }
+}
+
 menubarElem.addEventListener('click', () => {
     consoleElem.toggleAttribute('hidden');
 });
@@ -33,6 +58,8 @@ menubarElem.addEventListener('click', () => {
 (<HTMLElement>consoleElem.querySelector('.console-close')).addEventListener('click', () => {
     consoleElem.toggleAttribute('hidden');
 });
+
+(<HTMLDivElement>consoleElem.querySelector('.console-clear')).addEventListener('click', SJSconsole.clear);
 
 const createMenubarDivider = () => {
     const divider = document.createElement('div');
@@ -48,20 +75,5 @@ export const insertMenubarElem = () => {
 export const insertConsoleElem = () => {
     document.body.appendChild(consoleElem);
 }
-
-const SJSconsole = {
-    log(text: string) {
-        const elem = document.createElement('li');
-        elem.textContent = text;
-        consoleContent.appendChild(elem);
-    },
-
-    clear() {
-        consoleContent.innerHTML = '';
-    }
-}
-
-SJSconsole.log('Test 1');
-SJSconsole.log('HTML Test: <h1>TEST!</h1>');
 
 export default SJSconsole;
