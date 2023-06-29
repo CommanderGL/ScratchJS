@@ -22,5 +22,20 @@ const createElement = (type: keyof HTMLElementTagNameMap | string, props: {[key:
     return elem;
 }
 
-const html = htm.bind(createElement);
+const htmBinding = htm.bind(createElement);
+
+const html = (strings: TemplateStringsArray, ...values: any[]) => {
+    const htmUsage = htmBinding(strings, ...values);
+    if (Array.isArray(htmUsage)) {
+        const divWrapper = document.createElement('div');
+        htmUsage.forEach(usage => {
+            divWrapper.appendChild(usage);
+        });
+
+        return divWrapper;
+    }
+
+    return htmUsage;
+}
+
 export default html;

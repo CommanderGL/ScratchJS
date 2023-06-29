@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+.console {
+    margin: 0;
+    width: 500px;
+    height: 300px;
+    padding: 0;
+}
+
+.console {
+    & > * {
+        margin: 0;
+        font-family: 'JetBrains Mono', monospace;
+    }
+
+    & > header {
+        height: 60px;
+        background: #ccc;
+        display: flex;
+        align-items: center;
+    }
+
+    & > header {
+        & > button {
+            position: absolute;
+            right: 16px;
+        }
+
+        & > span {
+            margin-left: 16px;
+            font-weight: bolder;
+        }
+    }
+}

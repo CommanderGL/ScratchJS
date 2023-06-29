@@ -1,9 +1,9 @@
-type ScratchBlockArgument = {
+export type ScratchBlockArgument = {
     type: "string" | "number",
     defaultValue?: string | number
 }
 
-type ScratchBlock = {
+export type ScratchBlock = {
     opcode: string
     blockType: "command" | "reporter" | "Boolean" | "hat",
     text: string,
@@ -11,7 +11,7 @@ type ScratchBlock = {
     filter?: any
 }
 
-type ScratchExtensionInfo = {
+export type ScratchExtensionInfo = {
     id: string
     name: string,
     menuIconURI?: string,
@@ -19,17 +19,23 @@ type ScratchExtensionInfo = {
     blocks?: ScratchBlock[]
 }
 
-interface ScratchExtension {
+export interface ScratchExtension {
     runtime?: any;
     getInfo(): ScratchExtensionInfo;
 }
 
-interface Window {
-    vm: {
-        extensionManager: {
-            runtime: any,
-            _registerInternalExtension: (extension: ScratchExtension) => any,
-            _loadedExtensions: Map<any, any>
+declare global {
+    interface Window {
+        vm: {
+            extensionManager: {
+                runtime: any,
+                _registerInternalExtension: (extension: ScratchExtension) => any,
+                _loadedExtensions: Map<any, any>
+            }
         }
     }
+}
+
+export const loadCSS = (url: string) => {
+    const elem = document.createElement('link');
 }

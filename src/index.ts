@@ -1,11 +1,12 @@
-import { insertMenubarElem } from './console';
-import './extensionUtils';
+import { insertConsoleElem, insertMenubarElem } from './console';
+import { ScratchExtensionInfo, ScratchExtension } from './extensionUtils';
 
 class ScratchJS implements ScratchExtension {
     runtime: any;
 
     constructor(runtime: any) {
         this.runtime = runtime;
+        insertConsoleElem();
         insertMenubarElem();
         console.log("ScratchJS Intialized!");
     }
