@@ -1,5 +1,5 @@
 import { insertConsoleElem, insertMenubarElem } from './console';
-import { ScratchExtensionInfo, ScratchExtension } from './extensionUtils';
+import { ScratchExtensionInfo, ScratchExtension, loadExtension } from './extensionUtils';
 
 class ScratchJS implements ScratchExtension {
     runtime: any;
@@ -80,6 +80,4 @@ class ScratchJS implements ScratchExtension {
     }
 }
 
-const instance = new ScratchJS(window.vm.extensionManager.runtime);
-const service = window.vm.extensionManager._registerInternalExtension(instance);
-window.vm.extensionManager._loadedExtensions.set(instance.getInfo().id, service);
+loadExtension(ScratchJS);
