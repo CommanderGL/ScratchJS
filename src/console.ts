@@ -1,16 +1,16 @@
 import html from "./htm";
-import { makeDialogDraggable } from 'dialog-draggable';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './console.css';
+import Draggabilly from "draggabilly";
 
-export const consoleElem = <HTMLDialogElement>html`
-<dialog class="console" id="dialog">
-    <header data-dialog-draggable>
-        <span>ScratchJS | Console</span>
+export const consoleElem = <HTMLDivElement>html`
+<div class="console" hidden>
+    <header class="console-header">
+        <span>Console</span>
         <button class="console-close"><i class="fa-solid fa-xmark"></i></button>
     </header>
     <h1>Hi!</h1>
-</dialog>
+</div>
 `;
 
 const menubarElem = html`
@@ -19,12 +19,17 @@ const menubarElem = html`
 </div>
 `;
 
-menubarElem.addEventListener('click', () => {
-    consoleElem.showModal();
+const consoleDraggie = new Draggabilly(consoleElem, {
+    handle: '.console-header',
+    containment: '.gui_body-wrapper_-N0sA'
 });
 
-(<HTMLButtonElement>document.querySelector('.console-close')).addEventListener('click', () => {
-    consoleElem.close();
+menubarElem.addEventListener('click', () => {
+    consoleElem.toggleAttribute('hidden');
+});
+
+(<HTMLButtonElement>consoleElem.querySelector('.console-close')).addEventListener('click', () => {
+    consoleElem.toggleAttribute('hidden');
 });
 
 const createMenubarDivider = () => {
@@ -41,5 +46,3 @@ export const insertMenubarElem = () => {
 export const insertConsoleElem = () => {
     document.body.appendChild(consoleElem);
 }
-
-makeDialogDraggable();

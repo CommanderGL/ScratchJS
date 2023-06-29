@@ -1,10 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
+:root {
+    --margin: 16px;
+}
+
 .console {
+    position: absolute !important;
     margin: 0;
     width: 500px;
     height: 300px;
     padding: 0;
+    z-index: 100;
+    background: #fff;
+    left: 0;
+    top: 3rem;
+}
+
+.console .hidden {
+    opacity: 1;
 }
 
 .console {
@@ -23,11 +36,11 @@
     & > header {
         & > button {
             position: absolute;
-            right: 16px;
+            right: var(--margin);
         }
 
         & > span {
-            margin-left: 16px;
+            margin-left: var(--margin);
             font-weight: bolder;
         }
     }
