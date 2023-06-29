@@ -8,9 +8,6 @@ dependencies:
   '@fortawesome/fontawesome-free':
     specifier: ^6.4.0
     version: 6.4.0
-  dialog-draggable:
-    specifier: ^0.1.5
-    version: 0.1.5
   draggabilly:
     specifier: ^3.0.0
     version: 3.0.0
@@ -1094,10 +1091,6 @@ packages:
       ms: 2.1.3
       supports-color: 5.5.0
     dev: true
-
-  /dialog-draggable@0.1.5:
-    resolution: {integrity: sha512-fXeDAaZpI+DPuMSPzG8ERInqYHYGUGcqmbrdg2yf8T/6hor2AKjBPuxu2YrrwKJ0E3fHgIfjcMr/c7o2X1DPeA==}
-    dev: false
 
   /dom-serializer@2.0.0:
     resolution: {integrity: sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg==}
