@@ -1,12 +1,16 @@
 import html from "./htm";
-import '@fortawesome/fontawesome-free/js/all';
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
 import './console.css';
 import Draggabilly from "draggabilly";
 
 const consoleElem = <HTMLDivElement>html`
 <div class="console" hidden>
     <header class="console-header">
-        <div class="console-title">Console</div>
+        <div class="console-title">
+            <i class="console-icon fa-solid fa-terminal"></i>
+            Console
+        </div>
         <div class="console-right-block">
             <div class="console-clear">Clear</div>
             <div class="console-close">
@@ -27,6 +31,7 @@ new Draggabilly(consoleElem, {
 
 const menubarElem = html`
 <div aria-label="Console" class="menu-bar_menu-bar-item_oLDa- menu-bar_hoverable_c6WFB">
+    <i class="console-icon fa-solid fa-terminal"></i>
     <span>Console</span>
 </div>
 `;

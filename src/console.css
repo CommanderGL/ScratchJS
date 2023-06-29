@@ -19,6 +19,11 @@
     overflow: hidden;
 }
 
+.console-icon {
+    color: #fff;
+    margin-right: 0.35rem;
+}
+
 .console {
     & > * {
         margin: 0;
