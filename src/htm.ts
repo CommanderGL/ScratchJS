@@ -5,7 +5,7 @@ const appendChild = (parent: Element, child: Element) => {
         child.forEach(nestedChild => appendChild(parent, nestedChild));
         return;
     }
-    parent.appendChild(child.nodeType ? child : document.createTextNode(<any>child));
+    parent.append(child.nodeType ? child : document.createTextNode(<any>child));
 }
 
 const createElement = (type: keyof HTMLElementTagNameMap | string, props: {[key: string]: any}, ...children: Element[]) => {
@@ -29,7 +29,7 @@ const html = (strings: TemplateStringsArray, ...values: any[]) => {
     if (Array.isArray(htmUsage)) {
         const divWrapper = document.createElement('div');
         htmUsage.forEach(usage => {
-            divWrapper.appendChild(usage);
+            divWrapper.append(usage);
         });
 
         return divWrapper;

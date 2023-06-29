@@ -3,15 +3,22 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import './console.css';
 import Draggabilly from "draggabilly";
 
-export const consoleElem = <HTMLDivElement>html`
+const consoleElem = <HTMLDivElement>html`
 <div class="console" hidden>
     <header class="console-header">
-        <span>Console</span>
-        <button class="console-close"><i class="fa-solid fa-xmark"></i></button>
+        <div class="console-title">Console</div>
+        <i class="console-close fa-solid fa-xmark" aria-label="Close" tabindex=0></i>
     </header>
-    <h1>Hi!</h1>
+    <ul class="console-content"></ul>
 </div>
 `;
+
+const consoleContent = <HTMLUListElement>consoleElem.querySelector('.console-content');
+
+new Draggabilly(consoleElem, {
+    handle: '.console-header',
+    containment: '.gui_body-wrapper_-N0sA'
+});
 
 const menubarElem = html`
 <div aria-label="Console" class="menu-bar_menu-bar-item_oLDa- menu-bar_hoverable_c6WFB">
@@ -19,16 +26,11 @@ const menubarElem = html`
 </div>
 `;
 
-const consoleDraggie = new Draggabilly(consoleElem, {
-    handle: '.console-header',
-    containment: '.gui_body-wrapper_-N0sA'
-});
-
 menubarElem.addEventListener('click', () => {
     consoleElem.toggleAttribute('hidden');
 });
 
-(<HTMLButtonElement>consoleElem.querySelector('.console-close')).addEventListener('click', () => {
+(<HTMLElement>consoleElem.querySelector('.console-close')).addEventListener('click', () => {
     consoleElem.toggleAttribute('hidden');
 });
 
@@ -46,3 +48,20 @@ export const insertMenubarElem = () => {
 export const insertConsoleElem = () => {
     document.body.appendChild(consoleElem);
 }
+
+const SJSconsole = {
+    log(text: string) {
+        const elem = document.createElement('li');
+        elem.textContent = text;
+        consoleContent.appendChild(elem);
+    },
+
+    clear() {
+        consoleContent.innerHTML = '';
+    }
+}
+
+SJSconsole.log('Test 1');
+SJSconsole.log('HTML Test: <h1>TEST!</h1>');
+
+export default SJSconsole;
