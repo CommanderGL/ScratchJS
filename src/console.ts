@@ -42,12 +42,7 @@ const SJSconsole = {
     },
 
     clear() {
-        consoleContent.innerHTML = '';
-        const elem = document.createElement('li');
-        elem.textContent = "(console cleared)";
-        elem.style.color = "#777";
-        elem.style.fontStyle = "italic";
-        consoleContent.appendChild(elem);
+        consoleContent.innerHTML = '<li style="color: #777; font-style: italic;">(console cleared)</li>';
     }
 }
 
