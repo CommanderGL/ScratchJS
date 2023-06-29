@@ -1,5 +1,5 @@
 import html from "./htm";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import '@fortawesome/fontawesome-free/js/all';
 import './console.css';
 import Draggabilly from "draggabilly";
 
@@ -9,7 +9,9 @@ const consoleElem = <HTMLDivElement>html`
         <div class="console-title">Console</div>
         <div class="console-right-block">
             <div class="console-clear">Clear</div>
-            <i class="console-close fa-solid fa-xmark" aria-label="Close" tabindex=0></i>
+            <div class="console-close">
+                <i class="fa-solid fa-xmark" aria-label="Close" tabindex=0></i>
+            </div>
         </div>
     </header>
     <ul class="console-content"></ul>
@@ -50,7 +52,7 @@ menubarElem.addEventListener('click', () => {
     consoleElem.toggleAttribute('hidden');
 });
 
-(<HTMLElement>consoleElem.querySelector('.console-close')).addEventListener('click', () => {
+(<HTMLDivElement>consoleElem.querySelector('.console-close')).addEventListener('click', () => {
     consoleElem.toggleAttribute('hidden');
 });
 
