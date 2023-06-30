@@ -14,7 +14,6 @@
     "@types/webpack": "^5.28.1",
     "css-loader": "^6.8.1",
     "cssnano": "^6.0.1",
-    "nodemon": "^2.0.22",
     "postcss": "^8.4.24",
     "postcss-load-config": "^4.0.1",
     "postcss-loader": "^7.3.3",
