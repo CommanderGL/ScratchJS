@@ -20,6 +20,8 @@
     font-family: 'JetBrains Mono', monospace;
     overflow-y: auto;
     overflow-wrap: break-word;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 3px #000;
 }
 
 .console-icon {
@@ -28,10 +30,6 @@
 }
 
 .console {
-    & > * {
-        border-radius: 0.5rem;
-    }
-
     & > header {
         position: fixed;
         background: #29beb8;
@@ -44,6 +42,7 @@
         cursor: move;
         color: #fff;
         width: calc(var(--console-width) - 8px);
+        border-radius: inherit;
     }
 
     & > header {
