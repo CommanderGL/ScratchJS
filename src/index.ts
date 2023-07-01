@@ -1,5 +1,5 @@
 import SJSconsole, { insertConsoleElem, insertMenubarElem } from './console.js';
-import { ScratchExtensionInfo, ScratchExtension, loadUnsandboxedExtension } from 'scratch-extension-utils/types/index';
+import { ScratchExtensionInfo, ScratchExtension, loadUnsandboxedExtension } from 'scratch-extension-utils';
 
 class ScratchJS implements ScratchExtension {
     runtime: any;
