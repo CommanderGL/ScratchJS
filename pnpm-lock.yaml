@@ -14,6 +14,9 @@ dependencies:
   htm:
     specifier: ^3.1.1
     version: 3.1.1
+  scratch-extension-utils:
+    specifier: ^1.0.2
+    version: 1.0.2
 
 devDependencies:
   '@types/draggabilly':
@@ -2266,6 +2269,10 @@ packages:
       ajv: 6.12.6
       ajv-keywords: 3.5.2(ajv@6.12.6)
     dev: true
+
+  /scratch-extension-utils@1.0.2:
+    resolution: {integrity: sha512-vbQ0vS3ioyYDfIBL5+fwcB1nvBu0QlRPa3sNAf6+Bo3ptgJnh8EHTeqdinT1Bg5rq2vOhbeB92wkME5HLPj/Yw==}
+    dev: false
 
   /semver@7.5.3:
     resolution: {integrity: sha512-QBlUtyVk/5EeHbi7X0fw6liDZc7BBmEaSYn01fMU1OUYbf6GPsbTtd8WmnqbI20SeycoHSeiybkE/q1Q+qlThQ==}
