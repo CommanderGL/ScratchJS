@@ -72,6 +72,28 @@ class ScratchJS implements ScratchExtension {
                     }
                 },
                 {
+                    opcode: "error",
+                    blockType: "command",
+                    text: "console error [text]",
+                    arguments: {
+                        text: {
+                            type: "string",
+                            defaultValue: "Scary Error!"
+                        }
+                    }
+                },
+                {
+                    opcode: "warn",
+                    blockType: "command",
+                    text: "console warn [text]",
+                    arguments: {
+                        text: {
+                            type: "string",
+                            defaultValue: "Spooky Warning!"
+                        }
+                    }
+                },
+                {
                     opcode: "clear",
                     blockType: "command",
                     text: "clear console",
@@ -83,20 +105,28 @@ class ScratchJS implements ScratchExtension {
     eval_cmd = this.eval;
     eval_rep = this.eval;
 
-    eval({ code }: { code: string }) {
-        return JSON.stringify(eval(code));
+    eval(args: { code: string }) {
+        return JSON.stringify(eval(args.code));
     }
 
-    async fetch({ url }: { url: string }) {
-        return await fetch(url).then((res: Response) => res.text());
+    async fetch(args: { url: string }) {
+        return await fetch(args.url).then((res: Response) => res.text());
     }
 
-    alert({ text }: { text: string }) {
-        alert(text);
+    alert(args: { text: string }) {
+        alert(args.text);
     }
 
-    log({ text }: { text: string }) {
-        SJSconsole.log(text);
+    log(args: { text: string }) {
+        SJSconsole.log(args.text);
+    }
+
+    error(args: { text: string }) {
+        SJSconsole.error(args.text);
+    }
+
+    warn(args: { text: string }) {
+        SJSconsole.warn(args.text);
     }
 
     clear() {

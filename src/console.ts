@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/js/solid';
 import './console.css';
 import Draggabilly from "draggabilly";
 
-const consoleElem = <HTMLDivElement>html`
+const consoleElem = html`
 <div class="console" hidden>
     <header class="console-header">
         <div class="console-title">
@@ -45,7 +45,38 @@ const SJSconsole = {
             elem.style.fontStyle = "italic";
             elem.textContent = "(empty string)";
         }
+        let bottom = false;
+        if (consoleContent.scrollTop + consoleContent.clientHeight >= consoleContent.scrollHeight - 10) bottom = true;
         consoleContent.appendChild(elem);
+        if (bottom) elem.scrollIntoView();
+    },
+    error(text: string) {
+        const elem = document.createElement('li');
+        elem.textContent = text;
+        elem.style.color = "#eb4034";
+        if (text == '') {
+            elem.style.color = "#777";
+            elem.style.fontStyle = "italic";
+            elem.textContent = "(empty error string)";
+        }
+        let bottom = false;
+        if (consoleContent.scrollTop + consoleContent.clientHeight >= consoleContent.scrollHeight - 10) bottom = true;
+        consoleContent.appendChild(elem);
+        if (bottom) elem.scrollIntoView();
+    },
+    warn(text: string) {
+        const elem = document.createElement('li');
+        elem.textContent = text;
+        elem.style.color = "#d1b536";
+        if (text == '') {
+            elem.style.color = "#777";
+            elem.style.fontStyle = "italic";
+            elem.textContent = "(empty warning string)";
+        }
+        let bottom = false;
+        if (consoleContent.scrollTop + consoleContent.clientHeight >= consoleContent.scrollHeight - 10) bottom = true;
+        consoleContent.appendChild(elem);
+        if (bottom) elem.scrollIntoView();
     },
 
     clear() {
