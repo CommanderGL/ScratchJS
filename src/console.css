@@ -93,3 +93,7 @@
         height: calc(100% - (var(--nav-height) + var(--margin)));
     }
 }
+
+.is-pointer-down > header {
+    background: #18ada7;
+}

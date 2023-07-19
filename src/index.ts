@@ -1,14 +1,17 @@
 import SJSconsole, { insertConsoleElem, insertMenubarElem } from './console';
 import { ScratchExtensionInfo, ScratchExtension, loadUnsandboxedExtension } from 'scratch-extension-utils';
+import VM from 'scratch-vm';
 
-class ScratchJS implements ScratchExtension {
-    runtime: any;
+class ScratchJS extends ScratchExtension {
+    runtime?: VM.Runtime;
 
-    constructor(runtime: any) {
+    constructor(runtime: VM.Runtime) {
+        super();
+
         this.runtime = runtime;
         insertConsoleElem();
         insertMenubarElem();
-        console.log("ScratchJS Intialized!");
+        console.log("ScratchJS Initialized!");
     }
 
     getInfo(): ScratchExtensionInfo {
@@ -18,6 +21,7 @@ class ScratchJS implements ScratchExtension {
             blocks: [
                 {
                     opcode: "eval_cmd",
+                    func: "eval",
                     blockType: "command",
                     text: "eval [code]",
                     arguments: {
@@ -29,6 +33,7 @@ class ScratchJS implements ScratchExtension {
                 },
                 {
                     opcode: "eval_rep",
+                    func: "eval",
                     blockType: "reporter",
                     text: "eval [code]",
                     arguments: {
@@ -99,11 +104,8 @@ class ScratchJS implements ScratchExtension {
                     text: "clear console",
                 }
             ]
-        }
+        };
     }
-
-    eval_cmd = this.eval;
-    eval_rep = this.eval;
 
     eval(args: { code: string }) {
         return JSON.stringify(eval(args.code));
@@ -134,4 +136,71 @@ class ScratchJS implements ScratchExtension {
     }
 }
 
+class ScratchJSJSON extends ScratchExtension {
+    runtime: VM.Runtime;
+
+    constructor(runtime: VM.Runtime) {
+        super();
+
+        this.runtime = runtime;
+        this.removeFromSidebar();
+    }
+
+    
+
+    getInfo(): ScratchExtensionInfo {
+        return {
+            id: "scratchjsjson",
+            name: "JSON",
+            blocks: [
+                {
+                    opcode: "getKey",
+                    blockType: "reporter",
+                    text: "get key [key] from JSON [json]",
+                    arguments: {
+                        key: {
+                            type: "string",
+                            defaultValue: "apple"
+                        },
+                        json: {
+                            type: "string",
+                            defaultValue: "{ \"apple\": \"banana\" }"
+                        }
+                    }
+                },
+                {
+                    opcode: "setKey",
+                    blockType: "reporter",
+                    text: "set key [key] from JSON [json] to [value]",
+                    arguments: {
+                        key: {
+                            type: "string",
+                            defaultValue: "apple"
+                        },
+                        json: {
+                            type: "string",
+                            defaultValue: "{ \"apple\": \"banana\" }"
+                        },
+                        value: {
+                            type: "string",
+                            defaultValue: "pear"
+                        }
+                    }
+                }
+            ]
+        };
+    }
+
+    getKey(args: { key: string, json: string }) {
+        return JSON.parse(args.json)[args.key] ? JSON.parse(args.json)[args.key] : ''; 
+    }
+
+    setKey(args: { key: string, json: string, value: string }) {
+        const json = JSON.parse(args.json);
+        json[args.key] = args.value;
+        return JSON.stringify(json); 
+    }
+}
+
 loadUnsandboxedExtension(ScratchJS);
+loadUnsandboxedExtension(ScratchJSJSON);
